@@ -1,0 +1,8 @@
+*.o
+dump.rdb
+
+# IDE FILE -- Eclipse CDT
+.cproject
+.project
+.settings
+
