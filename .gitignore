@@ -3,6 +3,7 @@ dump.rdb
 
 # Redis Files
 *.rdb
+redis-server
 
 # IDE FILE -- Eclipse CDT
 .cproject
