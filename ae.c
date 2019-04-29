@@ -307,7 +307,6 @@ int aeProcessEvents(aeEventLoop *eventLoop, int flags)
             }
         }
     }
-
     return processed; /* return the number of processed file/time events */
 }
 

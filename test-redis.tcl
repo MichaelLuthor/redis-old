@@ -548,7 +548,7 @@ proc redis_rpop {fd key} {
 }
 
 if {[llength $argv] == 0} {
-    main 127.0.0.1 63790
+    main 127.0.0.1 6379
 } else {
     main [lindex $argv 0] [lindex $argv 1]
 }
