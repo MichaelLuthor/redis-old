@@ -1,9 +1,11 @@
 *.o
 dump.rdb
+*.svn*
 
 # Redis Files
 *.rdb
 redis-server
+redis-benchmark
 
 # IDE FILE -- Eclipse CDT
 .cproject
