@@ -27,7 +27,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define REDIS_VERSION "0.09"
+#define REDIS_VERSION "0.091"
 
 #include "fmacros.h"
 
@@ -63,7 +63,7 @@
 #define REDIS_ERR               -1
 
 /* Static server configuration */
-#define REDIS_SERVERPORT        6379    /* TCP port */
+#define REDIS_SERVERPORT        63790    /* TCP port */
 #define REDIS_MAXIDLETIME       (60*5)  /* default client timeout */
 #define REDIS_QUERYBUF_LEN      1024
 #define REDIS_LOADBUF_LEN       1024
@@ -2826,7 +2826,12 @@ static void sinterGenericCommand(redisClient *c, robj **setskeys, int setsnum, r
                     lookupKeyRead(c->db,setskeys[j]);
         if (!setobj) {
             zfree(dv);
-            addReply(c,shared.nokeyerr);
+            if (dstkey) {
+                deleteKey(c->db,dstkey);
+                addReply(c,shared.ok);
+            } else {
+                addReply(c,shared.nullmultibulk);
+            }
             return;
         }
         if (setobj->type != REDIS_SET) {
