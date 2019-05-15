@@ -2,11 +2,11 @@
 # Copyright (C) 2009 Salvatore Sanfilippo <antirez at gmail dot com>
 # This file is released under the BSD license, see the COPYING file
 
-DEBUG= -g
-CFLAGS= -O0 -Wall -W -DSDS_ABORT_ON_OOM
+DEBUG?= -g
+CFLAGS?= -std=c99 -pedantic -O2 -Wall -W -DSDS_ABORT_ON_OOM
 CCOPT= $(CFLAGS)
 
-OBJ = adlist.o ae.o anet.o dict.o redis.o sds.o zmalloc.o
+OBJ = adlist.o ae.o anet.o dict.o redis.o sds.o zmalloc.o lzf_c.o lzf_d.o
 BENCHOBJ = ae.o anet.o benchmark.o sds.o adlist.o zmalloc.o
 CLIOBJ = anet.o sds.o adlist.o redis-cli.o zmalloc.o
 
@@ -56,3 +56,6 @@ test:
 
 bench:
 	./redis-benchmark
+
+log:
+	git log '--pretty=format:%ad %s' --date=short > Changelog
